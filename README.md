@@ -3,6 +3,18 @@
 * Projeto criado com a intenção de cruzar as informações
  encontradas nos repositórios do Git e mensagens relacionadas no Twitter,
  a partir de uma palavra chave.
+ 
+* Endpoints
+
+  
+  Utiliza a palavra chave do arquivo de propriedades
+  * /search-info/get-tweets
+  
+  Utiliza a palavra chave passada por parâmetro
+  * /search-info/get-tweets/{classification}   
+ 
+ 
+ 
 * Tecnologias necessárias para rodar o projeto:
   * Java 1.8
   * Maven
