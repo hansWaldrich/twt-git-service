@@ -11,10 +11,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
 public class TwtGitService {
+    Logger logger = Logger.getAnonymousLogger();
 
     @Autowired
     private GitRestTemplate gitRestTemplate;
@@ -39,7 +42,7 @@ public class TwtGitService {
                     status = HttpStatus.NOT_FOUND;
 
         } catch(Exception e) {
-            status = HttpStatus.BAD_GATEWAY;
+            status = HttpStatus.BAD_REQUEST;
         }
 
 
@@ -61,7 +64,7 @@ public class TwtGitService {
                 status = HttpStatus.NOT_FOUND;
 
         } catch(Exception e) {
-            status = HttpStatus.BAD_GATEWAY;
+            status = HttpStatus.BAD_REQUEST;
         }
 
 
@@ -75,6 +78,7 @@ public class TwtGitService {
         try {
             response = new ResponseMessageDTO(prj, twitterRestTemplate.callApiTwitter(query));
         } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage());
             response = new ResponseMessageDTO(prj, new ArrayList<>());
         }
 
